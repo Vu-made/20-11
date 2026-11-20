@@ -1,0 +1,173 @@
+:root {
+  color-scheme: dark;
+  background: #070d18
+}
+
+* {
+  box-sizing: border-box
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at 50% 44%, #14223b 0%, #0b1528 40%, #060b15 80%);
+  font-family: system-ui, sans-serif;
+  overflow: hidden
+}
+
+main {
+  height: 100svh;
+  display: grid;
+  place-items: center
+}
+
+#garden {
+  display: block;
+  width: min(790px, 98vw);
+  height: min(860px, 91svh);
+  overflow: visible
+}
+
+.line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round
+}
+
+#art,
+#weather {
+  visibility: hidden
+}
+
+#garden {
+  touch-action: pan-y
+}
+
+#tree {
+  isolation: isolate
+}
+
+#landscape {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  pointer-events: none;
+  z-index: 0
+}
+
+#wind-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  pointer-events: none;
+  z-index: 1
+}
+
+footer,
+#wind-status {
+  z-index: 2;
+  transition: opacity .6s
+}
+
+body.wallpaper-mode footer,
+body.wallpaper-mode #wind-status {
+  opacity: 0;
+  pointer-events: none
+}
+
+body.wallpaper-mode {
+  cursor: none
+}
+
+#garden {
+  width: 100vw;
+  height: 100svh
+}
+
+@media(max-width:600px) {
+  footer {
+    gap: 5px
+  }
+
+  button {
+    font-size: 10px;
+    padding: 8px 11px
+  }
+}
+
+#weather {
+  pointer-events: none
+}
+
+.mote {
+  pointer-events: none
+}
+
+.falling-petal {
+  pointer-events: none
+}
+
+#wind-status {
+  position: fixed;
+  bottom: 73px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #7493ad;
+  font-size: 11px;
+  letter-spacing: .06em;
+  pointer-events: none
+}
+
+footer {
+  position: fixed;
+  bottom: 22px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px
+}
+
+button {
+  font: 12px system-ui;
+  color: #a4becd;
+  background: transparent;
+  border: 1px solid #33516a;
+  background: #0a1625b3;
+  border-radius: 24px;
+  padding: 9px 17px;
+  cursor: pointer;
+  transition: color .2s, border-color .2s
+}
+
+button:disabled {
+  opacity: .4;
+  cursor: default
+}
+
+button:hover {
+  color: #ffdbcb;
+  border-color: #7ca7a8
+}
+
+button:focus-visible {
+  outline: 2px solid #8ccbc5;
+  outline-offset: 4px
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .line {
+    animation: none;
+    stroke-dashoffset: 0
+  }
+
+  .sprout,
+  .petal,
+  .pollen {
+    animation: none;
+    opacity: 1;
+    transform: none
+  }
+}

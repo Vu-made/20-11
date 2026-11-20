@@ -1,0 +1,56 @@
+#gift-dialog {
+  width: min(580px, calc(100vw - 32px));
+  max-height: calc(100svh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  color: #e8e4de;
+  background: linear-gradient(145deg, #152936f5, #101c2cfb);
+  border: 1px solid #9bb6ae40;
+  border-radius: 24px;
+  box-shadow: 0 28px 100px #0009, 0 0 70px #8cbbab0a;
+}
+#gift-dialog::backdrop { background: #060c19ba; backdrop-filter: blur(7px); }
+.gift-open { cursor: auto !important; }
+.gift-open footer, .gift-open #wind-status { opacity: 0; pointer-events: none; }
+.gift-card { padding: 34px 40px 25px; text-align: center; }
+.gift-emblem { display: inline-flex; align-items: center; gap: 12px; color: #d8bca0; font: 23px Georgia, serif; letter-spacing: .04em; }
+.gift-emblem i { display: block; width: 1px; height: 25px; background: #d8bca05c; transform: rotate(24deg); }
+.gift-eyebrow { margin: 17px 0 12px; color: #91b2b4; font-size: 10px; text-transform: uppercase; letter-spacing: .15em; line-height: 1.7; }
+#gift-title { margin: 0; color: #f0ddcb; font: 32px/1.25 Georgia, 'Times New Roman', serif; text-wrap: balance; }
+.gift-message { display: grid; align-content: center; min-height: 182px; margin: 16px 0 0; font-size: 17px; line-height: 1.85; text-wrap: pretty; }
+.gift-signature { min-height: 20px; margin: 6px 0 18px; color: #a3b7b5; font: italic 14px Georgia, serif; }
+.gift-progress { display: flex; justify-content: center; gap: 9px; margin: 0 0 25px; }
+.gift-progress button { min-width: 24px; height: 24px; padding: 8px; border: none; background: none; }
+.gift-progress button::after { content: ''; display: block; width: 7px; height: 7px; margin: auto; border-radius: 50%; background: #7e999b5c; transition: background .2s; }
+.gift-progress button[aria-current="step"]::after { background: #d5b89e; box-shadow: 0 0 10px #d5b89e33; }
+.gift-actions { display: flex; align-items: center; gap: 12px; justify-content: space-between; }
+.gift-actions button { min-height: 44px; padding: 12px 18px; font-size: 13px; }
+.gift-primary { background: #cdb59a; border-color: #cdb59a; color: #172c37; font-weight: 600; }
+.gift-primary:hover { background: #e3cab0; border-color: #e3cab0; color: #172c37; }
+.gift-secondary { border-color: #778f914d; background: #122431; color: #bdccca; }
+.gift-text-button { display: block; margin: 18px auto 0; padding: 5px 8px; color: #90aaa9; border: none; background: none; font-size: 11px; }
+.gift-details-note { margin: 20px 0; font-size: 14px; line-height: 1.7; color: #b5c4c1; }
+.gift-credentials { margin: 0 0 20px; padding: 0 18px; border: 1px solid #708b8e40; border-radius: 14px; background: #07121b4d; text-align: left; }
+.gift-credentials > div { padding: 16px 0; border-bottom: 1px solid #819d9e24; }
+.gift-credentials > div:last-child { border-bottom: none; }
+.gift-credentials dt { margin-bottom: 7px; color: #8eabaa; font-size: 11px; }
+.gift-credentials dd { margin: 0; color: #e3dfd5; font-size: 14px; overflow-wrap: anywhere; }
+.gift-credentials a { color: #bbdccd; text-underline-offset: 4px; }
+.gift-password-row { display: flex; gap: 8px; align-items: center; }
+#gift-password { min-width: 0; width: 100%; padding: 3px 0; border: 0; border-radius: 0; background: none; color: #e3dfd5; font: 14px system-ui, sans-serif; }
+#gift-password::placeholder { color: #bdc5be; opacity: 1; }
+#gift-toggle-password { flex-shrink: 0; padding: 6px 10px; color: #c2d1c9; font-size: 11px; }
+.gift-visit { display: inline-block; margin: 0 0 23px; color: #bdd9c9; font-size: 13px; text-underline-offset: 5px; }
+#gift-dialog [hidden] { display: none !important; }
+.gift-message-enter { animation: gift-message-in .28s ease-out both; }
+@keyframes gift-message-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@media(max-width: 600px) {
+  .gift-card { padding: 28px 24px 23px; }
+  #gift-title { font-size: 28px; }
+  .gift-message { font-size: 16px; min-height: 195px; line-height: 1.8; }
+  .gift-actions { gap: 8px; }
+  .gift-actions button { padding: 11px 13px; font-size: 12px; }
+  footer { flex-wrap: wrap; padding-inline: 12px; }
+}
+@media(prefers-reduced-motion: reduce) { .gift-message-enter { animation: none; } }

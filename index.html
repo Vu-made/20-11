@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Một món quà nhỏ gửi cô · 20/11</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/gift.css">
+</head>
+
+<body>
+  <canvas id="landscape" aria-hidden="true"></canvas>
+  <main>
+    <svg id="garden" viewBox="65 15 860 900" role="img" aria-labelledby="title description">
+      <title id="title">Cây phong bên hồ và cây hoa neon</title>
+      <desc id="description">Cây phong cổ thụ với vỏ sần, rễ nổi và tán lá đỏ rộng bên bờ hồ. Chim bay về chiếc tổ có
+        chim non trên cành lớn; cây hoa neon nhỏ nở trên đảo xa phía phải, có cầu gỗ nối từ bờ trái ra đảo. Cánh hoa rơi
+        chạm nước tạo gợn sóng rồi trôi trên mặt hồ. Gió làm cành lá đung đưa, cuốn hạt sáng và cánh hoa rơi. Vuốt ngang
+        cây hoặc bấm Tạo gió để tương tác.</desc>
+      <defs>
+        <filter id="neon-glow" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1200" height="1150"
+          color-interpolation-filters="sRGB">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2.3" result="halo" />
+          <feComponentTransfer in="halo" result="soft-halo">
+            <feFuncA type="linear" slope=".65" />
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode in="soft-halo" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <linearGradient id="leaf" x1="0" y1="1" x2="1" y2="0">
+          <stop stop-color="#159fa8" />
+          <stop offset=".5" stop-color="#5ffff0" />
+          <stop offset="1" stop-color="#adfff0" />
+        </linearGradient>
+        <linearGradient id="stem" x1="0" y1="1" x2="1" y2="0">
+          <stop stop-color="#258590" />
+          <stop offset=".6" stop-color="#42d5dc" />
+          <stop offset="1" stop-color="#a3fff0" />
+        </linearGradient>
+        <linearGradient id="cup" x1="0" y1="0" x2="1" y2=".3">
+          <stop stop-color="#1ab9c9" />
+          <stop offset=".55" stop-color="#74ffe9" />
+          <stop offset="1" stop-color="#239fac" />
+        </linearGradient>
+        <linearGradient id="pink" x1="0" y1="1" x2=".5" y2="0">
+          <stop stop-color="#f371bc" />
+          <stop offset=".55" stop-color="#ffa5d6" />
+          <stop offset="1" stop-color="#ffe4f6" />
+        </linearGradient>
+        <linearGradient id="back" x1="0" y1="1" x2="0" y2="0">
+          <stop stop-color="#dd4eab" />
+          <stop offset="1" stop-color="#ff91d0" />
+        </linearGradient>
+      </defs>
+      <g id="art"></g>
+      <g id="weather" aria-hidden="true"></g>
+    </svg>
+  </main>
+  <canvas id="wind-canvas" aria-hidden="true"></canvas>
+  <div id="wind-status" role="status">Đang nở hoa…</div>
+  <footer><button id="gift-open" type="button">Lời gửi cô</button><button id="replay" type="button" aria-label="Phát lại hiệu ứng hoa nở">↻ &nbsp; Nở lại</button><button
+      id="gust" type="button" disabled>≋ &nbsp; Tạo gió</button><button id="fullscreen" type="button" title="Phím F">⛶
+      &nbsp; Toàn màn hình</button><button id="hide-controls" type="button" title="Phím H">Ẩn nút</button></footer>
+  <dialog id="gift-dialog" aria-labelledby="gift-title">
+    <article class="gift-card">
+      <div class="gift-emblem" aria-hidden="true"><span>20</span><i></i><span>11</span></div>
+      <p class="gift-eyebrow">Nhân ngày Nhà giáo Việt Nam</p>
+      <h1 id="gift-title">Một món quà nhỏ gửi cô</h1>
+      <section id="gift-message-view">
+        <p id="gift-message" class="gift-message" aria-live="polite" aria-atomic="true"></p>
+        <p id="gift-signature" class="gift-signature"></p>
+        <nav id="gift-progress" class="gift-progress" aria-label="Các lời nhắn"></nav>
+        <div class="gift-actions">
+          <button id="gift-previous" class="gift-secondary" type="button">Quay lại</button>
+          <button id="gift-next" class="gift-primary" type="button">Tiếp tục <span aria-hidden="true">→</span></button>
+        </div>
+        <button id="gift-skip" class="gift-text-button" type="button">Xem thông tin món quà</button>
+      </section>
+      <section id="gift-details-view" hidden>
+        <p class="gift-details-note">Em gửi cô thông tin món quà ở đây ạ.</p>
+        <dl class="gift-credentials">
+          <div><dt>Địa chỉ trang web</dt><dd><a id="gift-website" target="_blank" rel="noopener noreferrer"></a><span id="gift-no-website">Chưa có thông tin</span></dd></div>
+          <div><dt>Tài khoản</dt><dd id="gift-username">Chưa có thông tin</dd></div>
+          <div><dt><label for="gift-password">Mật khẩu</label></dt><dd class="gift-password-row"><input id="gift-password" type="password" readonly autocomplete="off" placeholder="Chưa có thông tin"><button id="gift-toggle-password" type="button" aria-label="Hiện mật khẩu" aria-pressed="false">Hiện</button></dd></div>
+        </dl>
+        <a id="gift-visit" class="gift-visit" target="_blank" rel="noopener noreferrer" hidden>Truy cập website <span aria-hidden="true">↗</span></a>
+        <div class="gift-actions"><button id="gift-read-again" class="gift-secondary" type="button">Đọc lại lời nhắn</button><button id="gift-reveal" class="gift-primary" type="button">Ngắm bức tranh <span aria-hidden="true">→</span></button></div>
+      </section>
+    </article>
+  </dialog>
+  <script defer src="gift.config.js"></script>
+  <script defer src="js/config.js"></script>
+  <script defer src="js/core.js"></script>
+  <script defer src="js/flowers.js"></script>
+  <script defer src="js/scenery.js"></script>
+  <script defer src="js/props.js"></script>
+  <script defer src="js/maple.js"></script>
+  <script defer src="js/characters.js"></script>
+  <script defer src="js/environment.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/gift.js"></script>
+</body>
+
+</html>
